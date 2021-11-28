@@ -254,10 +254,8 @@ int main(int argc, char* argv[]) {
   }
 
   // link csv
-  auto end_to_env_csv =
-      std::make_shared<AstraSim::CSVWriter>(path, "backend_end_to_end.csv");
-  auto dimensional_info_csv =
-      std::make_shared<AstraSim::CSVWriter>(path, "backend_dim_info.csv");
+  auto end_to_env_csv = std::make_shared<AstraSim::CSVWriter>(path, "backend_end_to_end.csv");
+  auto dimensional_info_csv = std::make_shared<AstraSim::CSVWriter>(path, "backend_dim_info.csv");
   if (stat_row == 0) {
     end_to_env_csv->initialize_csv(total_stat_rows + 1, 15);
 
