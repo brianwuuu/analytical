@@ -137,8 +137,7 @@ int main(int argc, char* argv[]) {
   auto link_bandwidths = network_parser.get<std::vector<double>>("link-bandwidth");
   cmd_parser.set_if_defined("link-bandwidth", &link_bandwidths);
   auto nic_latencies = network_parser.get<std::vector<double>>("nic-latency");
-  auto router_latencies =
-      network_parser.get<std::vector<double>>("router-latency");
+  auto router_latencies = network_parser.get<std::vector<double>>("router-latency");
   auto hbm_latencies = network_parser.get<std::vector<double>>("hbm-latency");
   auto hbm_bandwidths =
       network_parser.get<std::vector<double>>("hbm-bandwidth");
