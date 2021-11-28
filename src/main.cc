@@ -134,8 +134,7 @@ int main(int argc, char* argv[]) {
   cmd_parser.set_if_defined("units-count", &units_counts);
   auto link_latencies = network_parser.get<std::vector<double>>("link-latency");
   cmd_parser.set_if_defined("link-latency", &link_latencies);
-  auto link_bandwidths =
-      network_parser.get<std::vector<double>>("link-bandwidth");
+  auto link_bandwidths = network_parser.get<std::vector<double>>("link-bandwidth");
   cmd_parser.set_if_defined("link-bandwidth", &link_bandwidths);
   auto nic_latencies = network_parser.get<std::vector<double>>("nic-latency");
   auto router_latencies =
