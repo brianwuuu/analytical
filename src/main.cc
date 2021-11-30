@@ -66,6 +66,10 @@ int main(int argc, char* argv[]) {
       "link-bandwidth", "Link bandwidth per each dimension");
   cmd_parser.add_command_line_multitoken_option<std::vector<double>>(
       "link-latency", "Link latency per each dimension");
+  cmd_parser.add_command_line_multitoken_option<std::vector<double>>(
+      "hbm-bandwidth", "HBM bandwidth per each dimension");
+  cmd_parser.add_command_line_multitoken_option<std::vector<double>>(
+      "hbm-latency", "HBM latency per each dimension");
 
   // Parse command line arguments
   try {
@@ -139,8 +143,9 @@ int main(int argc, char* argv[]) {
   auto nic_latencies = network_parser.get<std::vector<double>>("nic-latency");
   auto router_latencies = network_parser.get<std::vector<double>>("router-latency");
   auto hbm_latencies = network_parser.get<std::vector<double>>("hbm-latency");
-  auto hbm_bandwidths =
-      network_parser.get<std::vector<double>>("hbm-bandwidth");
+  cmd_parser.set_if_defined("hbm-latency", &hbm_latencies);
+  auto hbm_bandwidths = network_parser.get<std::vector<double>>("hbm-bandwidth");
+  cmd_parser.set_if_defined("hbm-bandwidth", &hbm_bandwidths);
   auto hbm_scales = network_parser.get<std::vector<double>>("hbm-scale");
 
   /**
