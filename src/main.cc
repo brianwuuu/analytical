@@ -226,6 +226,14 @@ int main(int argc, char* argv[]) {
   Analytical::AnalyticalNetwork::setEventQueue(event_queue);
   Analytical::AnalyticalNetwork::setTopology(topology);
   Analytical::AnalyticalNetwork::setCostModel(&cost_model);
+  
+  double access_latency = hbm_latencies[0]; // change to hbm-latency
+  double npu_access_bw_GB = hbm_bandwidths[0]; // change to hbm-bandwidth
+  double nic_access_bw_GB = 12.5;
+
+//   std::cout << "Memory Access Latency (cycle): " << access_latency << std::endl;
+//   std::cout << "NPU Access Bandwidth (GB): " << npu_access_bw_GB << std::endl;
+//   std::cout << "NIC Access Bandwidth (GB): " << nic_access_bw_GB << std::endl;
 
   for (int i = 0; i < npus_count; i++) {
     analytical_networks[i] =
@@ -233,9 +241,9 @@ int main(int argc, char* argv[]) {
 
     memories[i] = std::make_unique<AstraSim::SimpleMemory>(
         (AstraSim::AstraNetworkAPI*)(analytical_networks[i].get()),
-        1,
-        500000,
-        12.5);
+        access_latency,
+        npu_access_bw_GB,
+        nic_access_bw_GB);
 
     systems[i] = new AstraSim::Sys(
         analytical_networks[i].get(), // AstraNetworkAPI
