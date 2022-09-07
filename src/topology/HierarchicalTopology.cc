@@ -316,7 +316,7 @@ std::pair<double, int> HierarchicalTopology::send(
     const auto hops_count = 1;
     communication_latency = linkLatency(dim, hops_count);
     communication_latency += serializationLatency(dim, payload_size);
-    communication_latency += 2 * nicLatency(dim);
+    // communication_latency += 2 * nicLatency(dim);
   } else if (topology == TopologyList::Switch) {
     const auto hops_count = 2;
     communication_latency = linkLatency(dim, hops_count);

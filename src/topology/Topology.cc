@@ -5,6 +5,7 @@ LICENSE file in the root directory of this source tree.
 
 #include "Topology.hh"
 #include <cassert>
+#include <iostream>
 
 using namespace Analytical;
 
@@ -74,6 +75,7 @@ Topology::Latency Topology::criticalLatency(
     Latency communication_latency,
     Latency hbm_latency) const noexcept {
   // return larger latency
+  // std::cout << "Communication Latency: " << communication_latency << std::endl;
   return (communication_latency > hbm_latency) ? communication_latency
                                                : hbm_latency;
 }
